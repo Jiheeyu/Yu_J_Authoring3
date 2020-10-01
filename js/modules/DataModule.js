@@ -1,6 +1,26 @@
 
 export default {
-    name: "Jihee",
-    role: "student",
-    nickname: "Jihee"
+    Justin: {
+        name: "Justin",
+        role: "Prof",
+        nickname: "Justin"
+    },
+
+    John: {
+        name: "John",
+        role: "Super chill",
+        nickname: "Just join"
+    },
+
+    Joe: {
+        name:"Joe",
+        role: "Prof",
+        nickname: "Teddy bear"
+    },
+
+    Pan: {
+        name:"Pan",
+        role:"Prof",
+        nickname:"Spider pan"
+    }
 };

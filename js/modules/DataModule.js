@@ -22,5 +22,11 @@ export default {
         name:"Pan",
         role:"Prof",
         nickname:"Spider pan"
+    },
+
+    Jarrod: {
+        name:"Jarrod",
+        role:"prof",
+        nickname:"Jarrod"
     }
 };

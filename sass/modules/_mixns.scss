@@ -4,6 +4,6 @@
 
 @mixin addPadding ($values...) {
     @each $var in $values {
-        padding: #{var};
+        padding: #{$var};
     }
 }

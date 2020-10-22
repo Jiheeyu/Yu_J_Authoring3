@@ -1,0 +1,33 @@
+#!/bin/bash
+# generate project in the Documents directory and optionally open it in an editor, add a remote repo
+
+# $1 is project name, $2 is editor, #3 is repo
+
+echo "Creating project structure..."
+
+cd ~/Documents;
+
+mkdir $1; cd $1
+mkdir css js includes images sass; mkdir js/components; mkdir sass/components; touch index.html; touch sass/main.scss; touch js/main.js;
+
+echo -e "(()=> {\n\t// stub - your code goes here \n})();" >> js/main.js
+
+git init
+echo "node_modules" >> .gitignore
+
+if [ ! -z "$3" ]
+then
+    git remote add origin $3
+    echo "added remote..."
+fi
+
+echo "initialized git repo"
+npm init -y
+echo "initialized NPM project"
+
+if [ ! -z "$2" ]
+then
+    cd ../; open -a "$2" $1
+fi
+
+echo "Created project in folder $1"

@@ -34,8 +34,7 @@ import { fetchData } from "./modules/DataMiner.js";
         }
         console.log(data);
     } 
-    fetchData('./DataSet.json').then(data => handleDataSet(data)).catch(err => console.log(err));
-    etchData('./AnotherDataSet.json').then(data => handleDataSet(data)).catch(err => console.log(err));
+    fetchData("./includes/functions.php").then(data => handleDataSet(data)).catch(err => console.log(err));
     
 })();
 

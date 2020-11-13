@@ -1,41 +1,46 @@
-//import your packages here
-import Team from "./modules/DataModule.js";
+// import your packages here
 import { fetchData } from "./modules/DataMiner.js";
 
 (() => {
-   
-
-    //     .then(res => res.json()) // parse the JSON (translate) back to plain JS
-    //     .then(data => {
-    //         //this is our data (DataSet.json)
-    //         //converted to a plain Javascript object
-    //         handleDataSet(data);
-    //     })
-    // .ctach((error) => console.log(error));
+    // stub * just a place for non-component-specific stuff
+    console.log('loaded');
     
-    // this receives the data payload from our AJAX request, parses it
+    function popErrorBox(message) {
+        alert("Something has gone horribly, horribly wrong");
+    }
+
     function handleDataSet(data) {
+        let lightbox = document.querySelector(".lightbox");
+       
+
+    }
+
+    function retrieveProjectInfo(event) {
+        // test for an ID
+        // check of an id, and if there isn't one, then don't try the fetch call
+        // becuase it'll break (the PHP will choke)
+        debugger;
+        if(!event.target.id) {return};
+
+        fetchData(`./includes/index.php?id=${event.target.id}`).then(data => console.log(data)).catch(err => console.log(err));
+    }
+
+    function renderPortfolioThumbnails(thumbs) {
         let userSection = document.querySelector('.user-section'),
             userTemplate = document.querySelector('#user-template').content;
 
-        //loop through
-        for (let user in data) {
+        for (let user in thumbs) {
             let currentUser = userTemplate.cloneNode(true),
                 currentUserText = currentUser.querySelector('.user').children;
-                debugger;
-            currentUserText[1].src = `./images/${data[user].avatar}.jpg`;
-            currentUserText[2].textContent = data[user].role;
-            currentUserText[3].textContent = data[user].name;
-            currentUserText[4].textContent = data[user].nickname;
 
-
+            currentUserText[1].src = `images/${thumbs[user].avatar}`;
+            currentUserText[1].id = thumbs[user].id;
             // add this new user to the view
+            //currentUser.addEventListener("click", retrieveProjectInfo);
             userSection.appendChild(currentUser);
         }
-        console.log(data);
-    } 
-    fetchData("./includes/functions.php").then(data => handleDataSet(data)).catch(err => console.log(err));
-    
+        userSection.addEventListener("click", retrieveProjectInfo);
+    }
+        
+    fetchData("./includes/index.php").then(data => renderPortfolioThumbnails(data)).catch(err => console.log(err));
 })();
-
-    
